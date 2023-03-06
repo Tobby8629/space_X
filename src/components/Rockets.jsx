@@ -8,6 +8,13 @@ function Rockets() {
   useEffect(() => {
     dispatch((RocketApi()));
   }, [dispatch]);
+  const handlecancel = () => {
+
+  };
+
+  const handlereserve = () => {
+
+  };
 
   return (
     <div>
