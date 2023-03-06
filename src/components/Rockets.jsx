@@ -1,19 +1,15 @@
-import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RocketApi } from '../redux/Rockets/RocketSlice';
+import { cancel, reserve } from '../redux/Rockets/RocketSlice';
 
 function Rockets() {
   const dispatch = useDispatch();
   const rocket = useSelector((state) => state.Rocket.rockets);
-  useEffect(() => {
-    dispatch((RocketApi()));
-  }, [dispatch]);
-  const handlecancel = () => {
-
+  const handlecancel = (id) => {
+    dispatch(cancel(id));
   };
 
-  const handlereserve = () => {
-
+  const handlereserve = (id) => {
+    dispatch(reserve(id));
   };
 
   return (
@@ -26,11 +22,11 @@ function Rockets() {
           <div className="text">
             <h3>{rocket.rocket_name}</h3>
             <p>
-              {rocket.reserved ? <span className="reserve"> reserved </span> : null}
+              {rocket.reserve ? <span className="reserve"> reserved </span> : null}
               {rocket.description}
             </p>
 
-            {rocket.reserved ? <button type="button" onClick={() => handlecancel(rocket.id)}>Cancel Reservation</button> : <button type="button" onClick={() => handlereserve(rocket.id)}>reserve rocket</button> }
+            {rocket.reserve ? <button type="button" onClick={() => handlecancel(rocket.id)}>Cancel Reservation</button> : <button type="button" onClick={() => handlereserve(rocket.id)}>reserve rocket</button> }
 
           </div>
 

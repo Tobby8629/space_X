@@ -22,7 +22,6 @@ const missionSlice = createSlice({
             id: data.mission_id,
             name: data.mission_name,
             description: data.description,
-            member: false,
             link: data.website,
           }
         )),
