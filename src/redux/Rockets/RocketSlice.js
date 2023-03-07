@@ -14,8 +14,18 @@ const rockets = createSlice({
   name: 'rocket',
   initialState,
   reducers: {
-    reserve: (state, action) => ({ rockets: state.rockets.map((rock) => (rock.id !== action.payload ? rock : { ...rock, reserve: 'true' })) }),
-    cancel: (state, action) => ({ rockets: state.rockets.map((rock) => (rock.id !== action.payload ? rock : { ...rock, reserve: 'false' })) }),
+    reserve: (state, action) => (
+      {
+        rockets: state.rockets.map((rock) => (rock.id !== action.payload ? rock
+          : { ...rock, reserve: true }
+        )),
+      }),
+    cancel: (state, action) => (
+      {
+        rockets: state.rockets.map((rock) => (rock.id !== action.payload ? rock
+          : { ...rock, reserve: false }
+        )),
+      }),
   },
   extraReducers: (builder) => {
     builder.addCase(RocketApi.fulfilled, (state, action) => {
